@@ -8,9 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject private var tabController = TabControllerModel()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        TabView(selection: $tabController.selectedTab) {
+            FirstTab()
+                .tabItem {
+                    Image(systemName: "f.square.fill")
+                    Text("First tab")
+                }
+                .tag(Tab.first)
+            SecondTab()
+                .tabItem {
+                    Image(systemName: "s.square.fill")
+                    Text("Second tab")
+                }
+                .tag(Tab.second)
+            ThirdTab()
+                .tabItem {
+                    Image(systemName: "t.square.fill")
+                    Text("Third tab")
+                }
+                .tag(Tab.third)
+        }
+        .environmentObject(tabController)
     }
 }
 
